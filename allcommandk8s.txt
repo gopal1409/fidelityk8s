@@ -1,0 +1,447 @@
+    1  yum install -y yum-utils
+    2  yum-config-manager \
+    3      --add-repo \
+    4      https://download.docker.com/linux/centos/docker-ce.repo
+    5  yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+    6  yum install docker-ce docker-ce-cli containerd.io
+    7  systemctl start docker
+    8  systemctl enable docker
+    9  history
+   10   5  yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+   11      6  yum install docker-ce docker-ce-cli containerd.io
+   12      7  systemctl start docker
+   13      8  systemctl enable docker
+   14  docker --version
+   15  systemctl status docker
+   16  docker
+   17  yum install docker-ce docker-ce-cli containerd.io
+   18  systemctl start docker
+   19  systemctl enable docker
+   20  service docker status
+   21  docker --version
+   22  docker container run --publish 80:80 --detach nginx
+   23  docker ps
+   24  mkdir project
+   25  cd project/
+   26  vi HelloWorld.java
+   27  yum install java-1.8.0-openjdk
+   28  ls
+   29  yum install java-1.8.0-openjdk-devel
+   30  javac HelloWorld.java 
+   31  vi manifest.txt
+   32  jar cfm HelloWorld.jar manifest.txt HelloWorld.class 
+   33  ls
+   34  java -jar HelloWorld.jar 
+   35  vi Dockerfile
+   36  docker build -t helloworld .
+   37  git init
+   38  yum install git
+   39  git init
+   40  git add .
+   41  git config --global user.name "gopal
+   42  "
+   43  git config --global user.email "gopal1409@gmail.com
+   44  "
+   45  git commit -m "java app with docker"
+   46  git status
+   47  git remote add origin https://github.com/gopal1409/springdocker.git
+   48  git push -u origin master
+   49  history > dockercommand.txt
+   50  cat dockercommand.txt 
+   51  git add .
+   52  git commit -m "docker command"
+   53  git push -u origin master
+   54  ls
+   55  cat manifest.txt 
+   56  cat Dockerfile 
+   57  docker images
+   58  docker run helloworld
+   59  vi Dockerfile 
+   60  docker build -t helloworld .
+   61  docker images
+   62  git add .
+   63  git commit -m "docker with alpine image"
+   64  git push -u origin master
+   65  history
+   66  docker images
+   67  docker
+   68  cat <<EOF | sudo tee /etc/sysctl.d/k8s.conf
+   69  net.bridge.bridge-nf-call-ip6tables = 1
+   70  net.bridge.bridge-nf-call-iptables = 1
+   71  EOF
+   72  sudo sysctl --system\
+   73  sudo sysctl --system
+   74  cat <<EOF | sudo tee /etc/yum.repos.d/kubernetes.repo
+   75  [kubernetes]
+   76  name=Kubernetes
+   77  baseurl=https://packages.cloud.google.com/yum/repos/kubernetes-el7-\$basearch
+   78  enabled=1
+   79  gpgcheck=1
+   80  repo_gpgcheck=1
+   81  gpgkey=https://packages.cloud.google.com/yum/doc/yum-key.gpg https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg
+   82  EOF
+   83  sudo setenforce 0
+   84  sudo sed -i 's/^SELINUX=enforcing$/SELINUX=permissive/' /etc/selinux/config
+   85  sudo yum install -y kubelet kubeadm kubectl --disableexcludes=kubernetes
+   86  sudo systemctl enable --now kubelet
+   87  systemctl daemon-reload
+   88  systemctl restart kubelet
+   89  history
+   90  clear
+   91  kubeadm init --pod-network-cidr=192.168.0.0/16
+   92  mkdir -p $HOME/.kube
+   93    sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+   94    sudo chown $(id -u):$(id -g) $HOME/.kube/config
+   95  kubectl get nodes
+   96  kubectl get pod --all-namespaces
+   97  docker ps
+   98  history
+   99  kubectl get pod --all-namespaces
+  100  $ kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$(kubectl version | base64 | tr -d '\n')"
+  101  kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$(kubectl version | base64 | tr -d '\n')"
+  102  kubectl get nodes
+  103  kubectl get pod --all-namespaces
+  104  kubectl get nodes
+  105  kubectl get pod --all-namespaces
+  106  docker ps
+  107  kubectl get nodes
+  108  clear
+  109  kubectl get pod --all-namespaces
+  110  kubectl get namespaces
+  111  kubectl create namespace quota-mem-cpu-example
+  112  kubectl get ns
+  113  kubectl describe ns quota-mem-cpu-example
+  114  history
+  115  kubectl get ns
+  116  kubectl edit ns quota-mem-cpu-example
+  117  vi quota.yaml
+  118  kubectl get ns
+  119  kubectl apply -f quota.yaml --namespace=quota-mem-cpu-example
+  120  kubectl describe ns quota-mem-cpu-example
+  121  ls
+  122  git
+  123  git status
+  124  git add .
+  125  git commit -m "quota.yaml"
+  126  ls
+  127  cd ..
+  128  git status
+  129  mkdir k8s
+  130  pwd
+  131  cd project/
+  132  ls
+  133  mv quota.yaml 
+  134  mv quota.yaml /root/k8s/
+  135  cd ..
+  136  cd k8s
+  137  ls
+  138  git init
+  139  git add .
+  140  git commit -m "quota"
+  141  git remote add origin https://github.com/gopal1409/fidelityk8s.git
+  142  git add .
+  143  git commit -m "quota management"
+  144  git push -u origin master
+  145  ls
+  146  history
+  147  kubectl apply -f https://github.com/gopal1409/fidelityk8s/blob/master/quota.yaml
+  148  kubectl apply -f https://raw.githubusercontent.com/gopal1409/fidelityk8s/master/quota.yaml
+  149  kubectl delete -f https://raw.githubusercontent.com/gopal1409/fidelityk8s/master/quota.yaml
+  150  kubectl delete -f https://raw.githubusercontent.com/gopal1409/fidelityk8s/master/quota.yaml --namespace=quota-me-cpu-example
+  151  kubectl apply -f https://raw.githubusercontent.com/gopal1409/fidelityk8s/master/quota.yaml --namespace=quota-me-cpu-example
+  152  kubectl get ns
+  153  kubectl apply -f https://raw.githubusercontent.com/gopal1409/fidelityk8s/master/quota.yaml --namespace=quota-mem-cpu-example
+  154  kubectl create ns prod
+  155  kubectl edit ns prod
+  156  kubectl get ns
+  157  kubectl edit ns prod
+  158  kubectl describe ns 
+  159  vi pod.yaml
+  160  kubectl get ns
+  161  kubectl apply -f pod.yaml --namespace=quota-mem-cpu-example
+  162  vi pod.yaml
+  163  kubectl apply -f pod.yaml --namespace=quota-mem-cpu-example
+  164  vi pod1.yaml 
+  165  ls
+  166  cp pod.yaml pod1.yaml 
+  167  vi pod1.yaml 
+  168  kubectl apply -f pod1.yaml --namespace=quota-mem-cpu-example
+  169  vi pod1.yaml 
+  170  kubectl apply -f pod1.yaml --namespace=quota-mem-cpu-example
+  171  vi pod1.yaml 
+  172  kubectl apply -f pod1.yaml --namespace=quota-mem-cpu-example
+  173  git add .
+  174  git commit -m "pod pod1"
+  175  git push -u origin master
+  176  kubectl get ns
+  177  kubectl get ns quota-mem-cpu-example
+  178  kubectl describe ns quota-mem-cpu-example
+  179  history
+  180  cat quota.yaml 
+  181  kubectl describe ns quota-mem-cpu-example
+  182  cat pod.yaml 
+  183  kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.0.0/aio/deploy/recommended.yaml
+  184  kubectl get pod --all-namespaces
+  185  cat <<EOF | kubectl apply -f -
+  186  apiVersion: v1
+  187  kind: ServiceAccount
+  188  metadata:
+  189    name: admin-user
+  190    namespace: kubernetes-dashboard
+  191  EOF
+  192  cat <<EOF | kubectl apply -f -
+  193  apiVersion: rbac.authorization.k8s.io/v1
+  194  kind: ClusterRoleBinding
+  195  metadata:
+  196    name: admin-user
+  197  roleRef:
+  198    apiGroup: rbac.authorization.k8s.io
+  199    kind: ClusterRole
+  200    name: cluster-admin
+  201  subjects:
+  202  - kind: ServiceAccount
+  203    name: admin-user
+  204    namespace: kubernetes-dashboard
+  205  EOF
+  206  kubectl -n kubernetes-dashboard describe secret $(kubectl -n kubernetes-dashboard get secret | sls admin-user | ForEach-Object { $_ -Split '\s+' } | Select -First 1)
+  207  kubectl get pod --all-namespaces
+  208  kubectl get svc --all-namespaces
+  209  kubectl edit svc kubernetes-dashboard -n kubernetes-dashboard
+  210  kubectl get svc -n kubernetes-dashboard
+  211  ip a
+  212  kubectl get svc -n kubernetes-dashboard
+  213  kubectl -n kubernetes-dashboard describe secret $(kubectl -n kubernetes-dashboard get secret | sls admin-user | ForEach-Object { $_ -Split '\s+' } | Select -First 1)
+  214  cat <<EOF | kubectl apply -f -
+  215  apiVersion: v1
+  216  kind: ServiceAccount
+  217  metadata:
+  218    name: admin-user
+  219    namespace: kubernetes-dashboard
+  220  EOF
+  221  cat <<EOF | kubectl apply -f -
+  222  apiVersion: rbac.authorization.k8s.io/v1
+  223  kind: ClusterRoleBinding
+  224  metadata:
+  225    name: admin-user
+  226  roleRef:
+  227    apiGroup: rbac.authorization.k8s.io
+  228    kind: ClusterRole
+  229    name: cluster-admin
+  230  subjects:
+  231  - kind: ServiceAccount
+  232    name: admin-user
+  233    namespace: kubernetes-dashboard
+  234  EOF
+  235  kubectl -n kubernetes-dashboard describe secret $(kubectl -n kubernetes-dashboard get secret | grep admin-user | awk '{print $1}')
+  236  history
+  237  kubectl -n kubernetes-dashboard describe secret $(kubectl -n kubernetes-dashboard get secret | grep admin-user | awk '{print $1}')
+  238  kubectl edit svc kubernetes-dashboard -n kubernetes-dashboard
+  239  kubectl get svc kubernetes-dashboard -n kubernetes-dashboard
+  240  kubectl apply -f https://raw.githubusercontent.com/gopal1409/fidelityk8s/master/quota.yaml
+  241  kubectl delete -f https://raw.githubusercontent.com/gopal1409/fidelityk8s/master/quota.yaml
+  242  kubectl get ns
+  243  kubectl delete -f https://raw.githubusercontent.com/gopal1409/fidelityk8s/master/quota.yaml -ns=quota-mem-cpu-example
+  244  kubectl apply -f https://raw.githubusercontent.com/gopal1409/fidelityk8s/master/quota.yaml -ns=quota-mem-cpu-example
+  245  kubectl apply -f https://raw.githubusercontent.com/gopal1409/fidelityk8s/master/quota.yaml -nameservice=quota-mem-cpu-example
+  246  kubectl apply -f https://raw.githubusercontent.com/gopal1409/fidelityk8s/master/quota.yaml --nameservice=quota-mem-cpu-example
+  247  vi quota.yaml
+  248  kubectl get ns
+  249  kubectl apply -f quota.yaml --namespaces=quota-mem-cpu-example
+  250  kubectl apply -f quota.yaml --namespace=quota-mem-cpu-example
+  251  kubectl describe ns quota-mem-cpu-example
+  252  kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.0.0/aio/deploy/recommended.yaml
+  253  kubectl get ns
+  254  cat <<EOF | kubectl apply -f -
+  255  apiVersion: v1
+  256  kind: ServiceAccount
+  257  metadata:
+  258    name: admin-user
+  259    namespace: kubernetes-dashboard
+  260  EOF
+  261  cat <<EOF | kubectl apply -f -
+  262  apiVersion: rbac.authorization.k8s.io/v1
+  263  kind: ClusterRoleBinding
+  264  metadata:
+  265    name: admin-user
+  266  roleRef:
+  267    apiGroup: rbac.authorization.k8s.io
+  268    kind: ClusterRole
+  269    name: cluster-admin
+  270  subjects:
+  271  - kind: ServiceAccount
+  272    name: admin-user
+  273    namespace: kubernetes-dashboard
+  274  EOF
+  275  kubectl -n kubernetes-dashboard describe secret $(kubectl -n kubernetes-dashboard get secret | grep admin-user | awk '{print $1}')
+  276  kubectl get svc
+  277  kubectl get svc --all-namespaces
+  278  kubectl edit svc kubernetes-dashboard --namespace=kubernetes-dashboard
+  279  kubectl get svc
+  280  kubectl edit svc kubernetes-dashboard --namespace=kubernetes-dashboard
+  281  kubectl get svc
+  282  kubectl get svc --namespace=kubernetes-dashboard
+  283  kubectl get ns
+  284  history
+  285  kubectl get nodes
+  286  kubectl get pod
+  287  kubectl get pod --all-namespaces
+  288  ls
+  289  cd k8s/
+  290  ls
+  291  vi deployment.yaml
+  292  kubectl apply -f deployment.yaml 
+  293  vi deployment.yaml 
+  294  kubectl apply -f deployment.yaml 
+  295  kubectl get deploy
+  296  watch kubectl get deploy
+  297  git add .
+  298  git commit -m "Deployment.yaml"
+  299  git push -u origin master
+  300  kubectl deploy
+  301  kubectl get deploy
+  302  history
+  303  kubectl get deployment
+  304  kubectl get pods --show-labels
+  305  kubectl get rs
+  306  kubectl get pod
+  307  history
+  308  kubectl get deployment
+  309  kubectl describe deploy
+  310  kubectl get pod
+  311  kubectl describe pod nginx-deployment-66b6c48dd5-fdb6r
+  312  history
+  313  kubectl edit deploy nginx-deployment
+  314  kubectl set image deployment/nginx-deployment nginx=nginx:1.16.1 --record
+  315  kubectl rollout status deployment/nginx-deployment
+  316  kubectl get rs
+  317  kubectl get pod
+  318  kubectl describe deployment
+  319  history
+  320  ls
+  321  kubectl apply -f deployment.yaml --namespace=deve
+  322  kubectl apply -f deployment.yaml --namespace=dev
+  323  kubctl set image deployment.v1.apps/nginx-deployment nginx=nginx:1.161 --record=true
+  324  kubectl set image deployment.v1.apps/nginx-deployment nginx=nginx:1.161 --record=true
+  325  kubectl rollout status deployment/nginx-deployment
+  326  kubectl get rs
+  327  kubectl get pod
+  328  kubectl describe pod nginx-deployment-66bc5d6c8-pv2n2
+  329  kubectl describe deployment
+  330  kubectl rollout history deployment/nginx-deployment
+  331  kubectl rollout undo deployment/nginx-deployment
+  332  kubectl get deployment
+  333  history
+  334  kubectl rollout history deployment/nginx-deployment
+  335  kubectl rollout undo deployment/nginx-deployment --revision=3
+  336  kubectl rollout undo deployment/nginx-deployment --to-revision=3
+  337  kubectl describe deployment
+  338  ls
+  339  clear
+  340  kubectl get deploy
+  341  kubectl edit deployment
+  342  watch kubectl get deployment
+  343  kubectl edit deployment
+  344  watch kubectl get deployment
+  345  kubectl scale deployment.v1.apps/nginx-deployment --replicas=10
+  346  watch kubectl get deployment
+  347  kubectl autoscale deployment.v1.apps/nginx-deployment --min=10 --max=15 --cpu-percent=80
+  348  history
+  349  kubectl get pod
+  350  kubectl get deployment
+  351  kubectl get rs
+  352  kubectl get rs -w
+  353  vi pv.yaml
+  354  kubectl apply -f pv.yaml 
+  355  vi pv.yaml 
+  356  kubectl apply -f pv.yaml 
+  357  git add .
+  358  git commit -m "presistent volume"
+  359  git push -u origin master
+  360  kubectl get pv 
+  361  kubectl get pv task-pv-volume
+  362  vi pvc.yaml
+  363  kubectl apply -f pvc.yaml 
+  364  vi pvc.yaml
+  365  kubectl apply -f pvc.yaml 
+  366  kubectl get pv task-pv-volume
+  367  kubectl get pvc task-pv-claim
+  368  git add .
+  369  git commit -m "pvc.yaml"
+  370  git push -u origin master
+  371  history
+  372  kubectl get pvc
+  373  kubectl describe pvc
+  374  kubectl describe pv
+  375  kubectl get pv
+  376  kubectl get pvc
+  377  kubectl get pvc -w
+  378  kubectl get pv
+  379  kubectl get pvc
+  380  vi storagepod.yaml
+  381  ls
+  382  kubectl apply storagepod.yaml 
+  383  kubectl apply -f  storagepod.yaml 
+  384  kubectl get pod
+  385  kubectl describe pod task-pv-pod
+  386  git add .
+  387  git commit -m "storage pod"
+  388  git push -u origin master
+  389  kubectl get pod
+  390  kubectl exec -it task-pv-pod -- /bin/bash
+  391  history
+  392  kubectl exec -it task-pv-pod -- /bin/bash
+  393  kubectl get pod
+  394  kubectl describe pod task-pv-pod
+  395  history
+  396  kubectl get svc
+  397  kubectl get pod
+  398  kubectl expose pod task-pv-pod
+  399  ls
+  400  vi storagepod.yaml 
+  401  kubectl apply -f storagepod.yaml 
+  402  kubectl expose pod task-pv-pod
+  403  kubectl get svc
+  404  kubectl expose pod task-pv-pod --type=NodePort --name=storagepod
+  405  kubectl get svc
+  406  cat storagepod.yaml 
+  407  git add .
+  408  git commit -m "storage pod with labels"
+  409  git push -u origin master
+  410  history
+  411  kubectl create secret generic mysql-root-pass --from-literal=password=R00t
+  412  kubectl create secret generic mysql-user-pass --from-literal=username=callicoder --from-literal=password=c@ll1c0d3r
+  413  kubectl create secret generic mysql-db-url --from-literal=database=polls --from-literal=url=
+  414  kubectl create secret generic mysql-db-url --from-literal=database=polls --from-literal=url='jdbc:mysql://polling-app-mysql:3306/polls?useSSL=false&serverTimezone=UTC&useLegacyDatetimeCode=false'
+  415  kubectl delete secret generic mysql-db-url --from-literal=database=polls --from-literal=url=
+  416  kubectl delete secret generic mysql-db-url --from-literal=database=polls
+  417  kubectl delete secret mysql-db-url
+  418  kubectl create secret generic mysql-db-url --from-literal=database=polls --from-literal=url='jdbc:mysql://polling-app-mysql:3306/polls?useSSL=false&serverTimezone=UTC&useLegacyDatetimeCode=false'
+  419  vi mysql.yaml
+  420  ls
+  421  kubectl apply -f mysql.yaml 
+  422  kubectl get pv
+  423  kubectl get pvc
+  424  kubectl get svc
+  425  kubectl get deploy
+  426  kubectl get secret
+  427  kubectl describe secret mysql-root-pass
+  428  vi springserver.yaml
+  429  ls
+  430  kubectl apply -f springserver.yaml 
+  431  kubectl get deploy
+  432  kubectl get pod
+  433  kubectl get svc
+  434  vi frontend.yaml
+  435  kubectl apply frontend.yaml 
+  436  kubectl apply -f frontend.yaml 
+  437  kubectl get deploy
+  438  kubectl delete deploy nginx-deployment
+  439  kubectl get deploy
+  440  kubectl describe polling-app-client
+  441  kubectl describe pod polling-app-client
+  442  clear
+  443  history
+  444  kubectl get deploy
+  445  clear
+  446  history
+  447  history > allcommandk8s.txt
