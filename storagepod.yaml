@@ -5,7 +5,8 @@ kind: Pod
 metadata:
 
     name: task-pv-pod 
-
+    labels:
+      mypod: web
 spec:
 
     volumes:
